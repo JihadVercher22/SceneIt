@@ -1,15 +1,15 @@
 import React from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import { TrailStats } from '../components/TrailStats';
+import { RouteStats } from '../components/RouteStats';
 import { fetchWeatherAlerts } from '../services/weatherService';
 
-const TrailDetailsScreen = ({ route }) => {
-  const { trail } = route.params;
+const RouteDetailsScreen = ({ route }) => {
+  const { route } = route.params;
   const [weatherAlerts, setWeatherAlerts] = React.useState([]);
 
   React.useEffect(() => {
-    fetchWeatherAlerts(trail.latitude, trail.longitude)
+    fetchWeatherAlerts(route.latitude, route.longitude)
       .then(setWeatherAlerts)
       .catch(console.error);
   }, []);
@@ -19,19 +19,19 @@ const TrailDetailsScreen = ({ route }) => {
       <MapView
         style={{ height: 200 }}
         initialRegion={{
-          latitude: trail.latitude,
-          longitude: trail.longitude,
+          latitude: route.latitude,
+          longitude: route.longitude,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
       >
-        <Marker coordinate={{ latitude: trail.latitude, longitude: trail.longitude }} />
+        <Marker coordinate={{ latitude: route.latitude, longitude: route.longitude }} />
       </MapView>
 
-      <TrailStats 
-        length={trail.length}
-        elevation={trail.elevation}
-        difficulty={trail.difficulty}
+      <routeStats 
+        length={route.length}
+        elevation={route.elevation}
+        difficulty={route.difficulty}
       />
 
       {weatherAlerts.map(alert => (

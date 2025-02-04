@@ -1,3 +1,5 @@
+// Main map interface with bottom sheet
+
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import MapboxGL from '@react-native-mapbox-gl/maps';

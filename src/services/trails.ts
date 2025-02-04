@@ -1,3 +1,5 @@
+// Handles OpenStreetMap/Hiking Project API calls
+
 import axios from 'axios';
 
 const SCENIC_API_KEY = 'YOUR_SCENIC_PROJECT_KEY';
